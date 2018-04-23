@@ -4,7 +4,7 @@ void crearListadoSeries(eSerie array[],int cantidad) {
     int i;
     for(i=0;i<cantidad;i++)
     {
-        array[i].idSerie=i;
+        array[i].idSerie=i+1;
         if(i%2==0)
         {
             strcpy(array[i].genero,"Terror");

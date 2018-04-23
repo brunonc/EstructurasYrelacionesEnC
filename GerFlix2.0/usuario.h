@@ -5,5 +5,6 @@ typedef struct{
     char nombre[50];
 }eUsuario;
 
+void crearListadoDeTresUsuarios(eUsuario[]);
 
 #endif // USUARIO_H_INCLUDED
