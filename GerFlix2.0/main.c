@@ -9,6 +9,6 @@
 */
 int main()
 {
-    printf("Hello world!\n");
+    printf("Bruno Camussi\n");
     return 0;
 }
