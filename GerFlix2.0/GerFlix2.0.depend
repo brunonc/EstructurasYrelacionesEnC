@@ -1,7 +1,10 @@
 # depslib dependency file v1.0
-1524487252 source:c:\test\bcamussi\estructurasyrelacionesenc\gerflix2.0\serie.c
+1524491320 source:c:\test\bcamussi\estructurasyrelacionesenc\gerflix2.0\serie.c
+	"serie.h"
 
 1524487252 source:c:\test\bcamussi\estructurasyrelacionesenc\gerflix2.0\usuario.c
 
 1524487252 source:c:\test\bcamussi\estructurasyrelacionesenc\gerflix2.0\usuarioserie.c
+
+1524491325 c:\test\bcamussi\estructurasyrelacionesenc\gerflix2.0\serie.h
 
