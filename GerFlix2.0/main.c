@@ -1,17 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "serie.h"
 #include "usuario.h"
 #include "usuarioSerie.h"
 #define TAMS 5
 #define TAMU 3
 #define TAMUS 9
-
-void mostrarSeries(eSerie[], int);
-void mostrarSerie(eSerie serie);
-void mostrarUsrConSeries(eUsuario[], eUsuarioSerie[], eSerie[], int);
-int buscarUsuarioPorId(eUsuario[], int, int);
-int buscarSeriePorId(eSerie[], int, int);
 
 /**
 *
@@ -30,6 +23,11 @@ int main() {
     for (i = 0; i < TAMS; i++) {
         series[i].idSerie = 0;
     }
+    eRating ratings[TAMS];
+        for (i = 0; i < TAMS; i++) {
+        ratings[i].idSerie = 0;
+        ratings[i].rating = 0;
+    }
     eUsuarioSerie relUsuarioSerie[TAMUS];
 
     crearListadoDeTresUsuarios(usuarios);
@@ -37,54 +35,40 @@ int main() {
     crearListadoUsuariosYSeries(relUsuarioSerie);
 
     do {
-        printf("1. MOSTRAR SERIES\n2. MOSTRAR SERIES DE USUARIOS\n9. SALIR\nElija una opcion: ");
+        printf("1. SERIES\n2. USUARIOS\n3. REPORTES\n9. SALIR\nElija una opcion: ");
         scanf("%d", &opcion);
 
         switch (opcion) {
         case 1:
             mostrarSeries(series, TAMS);
             break;
-        case 2:
-            mostrarUsrConSeries(usuarios, relUsuarioSerie, series, TAMUS);
+        case 3:
+            do {
+                printf("1. LISTAR SERIES POR USUARIO\n2. LISTAR USUARIOS POR SERIES\n3. LISTAR SERIES MENOS VISTAS\n9. SALIR\nElija una opcion: ");
+                scanf("%d", &opcion);
+
+                switch (opcion) {
+                case 1:
+                    mostrarSeriesPorUsr(usuarios, series, relUsuarioSerie, TAMU, TAMUS, TAMS);
+                    //mostrarUsrSerie(usuarios, relUsuarioSerie, series, TAMUS, TAMU, TAMS);
+                    break;
+                case 2:
+                    mostrarUsrsPorSerie(usuarios, series, relUsuarioSerie, TAMU, TAMUS, TAMS);
+                    break;
+                case 3:
+                    calcularRatings(series, ratings, relUsuarioSerie, TAMS, TAMUS);
+                    mostrarSeriesMenosVistas(ratings, series, TAMS);
+                }
+            } while (opcion != 9);
         }
     } while (opcion != 9);
     return 0;
 }
 
-void mostrarSeries(eSerie series[], int tam) {
-    int i;
-    for (i = 0; i < TAMS; i++) {
-        mostrarSerie(series[i]);
-    }
-}
 
-void mostrarSerie(eSerie serie) {
-    printf("%s -- %s\n", serie.nombre, serie.genero);
-}
 
-void mostrarUsrConSeries(eUsuario usuarios[], eUsuarioSerie usuarioSerie[], eSerie series[], int tamrel) {
-    int i, iusuario, iserie;
-    for (i = 0; i < tamrel; i++) {
-        iusuario = buscarUsuarioPorId(usuarios, usuarioSerie[i].idUsuario, TAMU);
-        iserie = buscarSeriePorId(series, usuarioSerie[i].idSerie, TAMS);
-        printf("%s -- %s\n", usuarios[iusuario].nombre, series[iserie].nombre);
-    }
-}
 
-int buscarUsuarioPorId(eUsuario usuarios[], int id, int tam) {
-    int i;
-    for (i = 0; i < tam; i++) {
-        if (usuarios[i].idUsuario == id) {
-            return i;
-        }
-    }
-}
 
-int buscarSeriePorId(eSerie series[], int id, int tam) {
-    int i;
-    for (i = 0; i < tam; i++) {
-        if (series[i].idSerie == id) {
-            return i;
-        }
-    }
-}
+
+
+
